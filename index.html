@@ -64,7 +64,7 @@ section{padding-top:1.5rem}
 .head p{color:var(--muted);margin-top:0.25rem;max-width:60ch}
 
 /* projects */
-#projects{padding-top:3rem}
+#projects,#certifications{padding-top:3rem}
 .filters{display:flex;flex-wrap:wrap;gap:0.75rem;justify-content:space-between;margin-bottom:1rem}
 .chips{display:flex;flex-wrap:wrap;gap:0.5rem}
 .chip{font:500 .9rem "Geist",system-ui,sans-serif;padding:0.4375rem 0.875rem;border-radius:62.4375rem;border:1px solid var(--line);background:none;color:var(--muted);cursor:pointer}
@@ -151,6 +151,23 @@ section{padding-top:1.5rem}
 .trail{position:fixed;left:0;top:0;z-index:200;border-radius:50%;background:var(--accent);pointer-events:none;opacity:0;transition:opacity .18s ease;will-change:transform}
 body.trail-on .trail{opacity:var(--o)}
 
+/* certifications: ledger-style list */
+.certs{list-style:none;padding:0;border-top:1px solid var(--line)}
+.cert{position:relative;display:grid;grid-template-columns:9rem minmax(0,1fr) auto;gap:1.25rem;align-items:center;padding:0.875rem 0;border-bottom:1px solid var(--line)}
+.cert img{display:block;width:100%;aspect-ratio:1200/630;object-fit:cover;background:var(--line);border:1px solid var(--line);border-radius:0.375rem;transition:transform .2s ease,border-color .2s ease}
+.cert:hover img{transform:translateY(-2px);border-color:var(--accent)}
+.cert h3{font-size:1.05rem;font-weight:600;line-height:1.3}
+.cert h3 a{text-decoration:none}
+.cert h3 a::after{content:"";position:absolute;inset:0}
+.cert-meta{display:flex;flex-wrap:wrap;align-items:center;gap:0.15rem 0.9rem;margin-top:0.2rem;color:var(--muted);font-size:.88rem}
+.verified{display:inline-flex;align-items:center;gap:0.3rem;color:var(--accent)}
+.verified svg{width:0.95rem;height:0.95rem}
+.cert-d{margin-top:0.35rem;color:var(--muted);font-size:.9rem;line-height:1.4}
+.cert-go{display:inline-flex;align-items:center;gap:0.4rem;color:var(--muted);font-size:.9rem;white-space:nowrap;transition:color .2s ease}
+.cert-go svg{width:1rem;height:1rem;transition:transform .2s ease}
+.cert:hover .cert-go,.cert:focus-within .cert-go{color:var(--accent)}
+.cert:hover .cert-go svg{transform:translateX(0.2rem)}
+
 /* footer */
 .foot{margin-top:3.5rem;border-top:1px solid var(--line);background:color-mix(in srgb,var(--surface) 55%,transparent)}
 .foot-in{display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:2rem;padding-top:2rem;padding-bottom:1.75rem}
@@ -171,6 +188,8 @@ body.trail-on .trail{opacity:var(--o)}
   .brand{display:block;color:var(--text);font-weight:600;font-size:.95rem;text-decoration:none}
   .icon-btn.menu-btn{display:grid}
   .nav-m{display:block}
+  .cert{grid-template-columns:6.5rem minmax(0,1fr);gap:0.875rem}
+  .cert-go{grid-column:2}
   .bar nav{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:0;padding:0.25rem 1.5rem 0.75rem;background:var(--bg);border-bottom:1px solid var(--line)}
   .bar.open nav{display:flex}
   .bar nav a{padding:0.8rem 0;font-size:1rem;color:var(--text);border-bottom:1px solid var(--line)}
@@ -178,12 +197,12 @@ body.trail-on .trail{opacity:var(--o)}
   .bar.open .i-open{display:none}
   .bar.open .i-close{display:block}
   .duo{padding-top:1.75rem}
-  #projects{padding-top:2.25rem}
+  #projects,#certifications{padding-top:2.25rem}
   .foot{margin-top:2.5rem}
   .foot-in{grid-template-columns:1fr 1fr}
   .foot-brand{grid-column:1/-1}
 }
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.card,.tools li,.ico{transition:none}.tools li:hover,.tools li:hover .ico{transform:none}.trail{display:none}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.card,.tools li,.ico,.cert img,.cert-go svg{transition:none}.tools li:hover,.tools li:hover .ico,.cert:hover img,.cert:hover .cert-go svg{transform:none}.trail{display:none}}
 </style>
 </head>
 <body>
@@ -195,6 +214,7 @@ body.trail-on .trail{opacity:var(--o)}
       <a href="#experience">Experience</a>
       <a href="#stack">Tech stack</a>
       <a href="#projects">Projects</a>
+      <a href="#certifications">Certifications</a>
       <a class="nav-m" href="resume.pdf" download="felix-angelo-jr-resume.pdf">Resume (PDF)</a>
       <a class="nav-m" href="mailto:angelojr.felix@gmail.com">Email me</a>
     </nav>
@@ -267,6 +287,13 @@ body.trail-on .trail{opacity:var(--o)}
     <p class="empty" id="empty" hidden></p>
   </section>
 
+  <section id="certifications">
+    <div class="head">
+      <h2>Certifications</h2>
+    </div>
+    <ul class="certs" id="certList"></ul>
+  </section>
+
 </main>
 
 <footer class="foot">
@@ -281,6 +308,7 @@ body.trail-on .trail{opacity:var(--o)}
         <li><a href="#experience">Experience</a></li>
         <li><a href="#stack">Tech stack</a></li>
         <li><a href="#projects">Projects</a></li>
+        <li><a href="#certifications">Certifications</a></li>
         <li><a href="resume.pdf" download="felix-angelo-jr-resume.pdf">Resume (PDF)</a></li>
       </ul>
     </nav>
@@ -450,6 +478,28 @@ document.getElementById("timeline").innerHTML = JOBS.map(function(j){
   }, {passive: true});
   document.addEventListener("mouseleave", function(){clearTimeout(idle); document.body.classList.remove("trail-on"); placed = false;});
 })();
+
+/* ---------- Certifications ---------- */
+/* Add new certificates here, newest first. img can be a full URL or a local path such as img/certs/name.jpg */
+var CERTS = [
+ {t:"Learn Docker",issuer:"Boot.dev",date:"Oct 2026",
+  u:"https://www.boot.dev/certificates/5f7eee15-1cc0-4624-b42d-44a0b15df335",
+  img:"cert/5f7eee15-1cc0-4624-b42d-44a0b15df335.jpg?v=1791522318",
+  d:"Completed Boot.dev's Learn Docker course."},
+ {t:"Learn JavaScript",issuer:"Boot.dev",date:"Oct 2026",
+  u:"https://www.boot.dev/certificates/5bab096c-9c14-4937-b2da-fd00b7462329",
+  img:"cert/5bab096c-9c14-4937-b2da-fd00b7462329.jpg?v=1791434389",
+  d:"Completed Boot.dev's Learn JavaScript course."}
+];
+var CHECK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.7 2.7L16 9.8"/></svg>';
+var ARROW = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+document.getElementById("certList").innerHTML = CERTS.map(function(c){
+  return '<li class="cert"><img src="' + c.img + '" alt="" loading="lazy">' +
+    '<div><h3><a href="' + c.u + '" target="_blank" rel="noopener">' + c.t + '</a></h3>' +
+    '<p class="cert-meta"><span>' + c.issuer + '</span><span>' + c.date + '</span><span class="verified">' + CHECK + 'Verified</span></p>' +
+    '<p class="cert-d">' + c.d + '</p></div>' +
+    '<span class="cert-go">View certificate' + ARROW + '</span></li>';
+}).join("");
 
 /* ---------- Mobile menu ---------- */
 (function(){
