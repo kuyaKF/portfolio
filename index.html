@@ -64,7 +64,7 @@ section{padding-top:1.5rem}
 .head p{color:var(--muted);margin-top:0.25rem;max-width:60ch}
 
 /* projects */
-#projects,#certifications{padding-top:3rem}
+#projects,#certifications,#recommendations{padding-top:3rem}
 .filters{display:flex;flex-wrap:wrap;gap:0.75rem;justify-content:space-between;margin-bottom:1rem}
 .chips{display:flex;flex-wrap:wrap;gap:0.5rem}
 .chip{font:500 .9rem "Geist",system-ui,sans-serif;padding:0.4375rem 0.875rem;border-radius:62.4375rem;border:1px solid var(--line);background:none;color:var(--muted);cursor:pointer}
@@ -168,6 +168,28 @@ body.trail-on .trail{opacity:var(--o)}
 .cert:hover .cert-go,.cert:focus-within .cert-go{color:var(--accent)}
 .cert:hover .cert-go svg{transform:translateX(0.2rem)}
 
+.loc{display:flex;align-items:center;gap:0.35rem;margin-top:0.2rem;color:var(--muted);font-size:.88rem}
+.loc svg{width:0.95rem;height:0.95rem;flex:none}
+
+/* recommendations */
+.recs{display:grid;gap:1rem}
+.rec{display:grid;grid-template-columns:14rem minmax(0,1fr);gap:2rem;align-items:start;padding:1.5rem;background:var(--surface);border:1px solid var(--line);border-radius:var(--r)}
+.rec-avatar{display:grid;place-items:center;width:3rem;height:3rem;margin-bottom:0.6rem;border-radius:100%;border:1px solid var(--line);background:color-mix(in srgb,var(--accent) 14%,var(--bg));color:var(--accent);font-weight:600}
+img.rec-avatar{display:block;object-fit:cover;background:var(--surface)}
+.rec-name{font-weight:600;line-height:1.3}
+.rec-role,.rec-date{margin-top:0.15rem;color:var(--muted);font-size:.88rem;line-height:1.4}
+.rec-link{display:inline-flex;align-items:center;gap:0.35rem;margin-top:0.75rem;color:var(--muted);font-size:.88rem;text-decoration:none}
+.rec-link:hover{color:var(--accent)}
+.rec-link svg{width:0.9rem;height:0.9rem}
+.rec-mark{display:block;width:2rem;height:2rem;margin-bottom:0.5rem;color:var(--accent);opacity:.9}
+.rec-text p{font-size:1.02rem;line-height:1.5;color:var(--text)}
+.rec-text p+p{margin-top:0.8em}
+.rec-more[hidden]{display:none}
+.rec-more{margin-top:0.8em}
+.rec-toggle{display:inline-flex;align-items:center;gap:0.35rem;margin-top:0.9rem;padding:0;border:0;background:none;color:var(--accent);font:500 .92rem "Geist",system-ui,sans-serif;cursor:pointer}
+.rec-toggle svg{width:1rem;height:1rem;transition:transform .2s ease}
+.rec-toggle[aria-expanded="true"] svg{transform:rotate(180deg)}
+
 /* footer */
 .foot{margin-top:3.5rem;border-top:1px solid var(--line);background:color-mix(in srgb,var(--surface) 55%,transparent)}
 .foot-in{display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:2rem;padding-top:2rem;padding-bottom:1.75rem}
@@ -197,12 +219,13 @@ body.trail-on .trail{opacity:var(--o)}
   .bar.open .i-open{display:none}
   .bar.open .i-close{display:block}
   .duo{padding-top:1.75rem}
-  #projects,#certifications{padding-top:2.25rem}
+  #projects,#certifications,#recommendations{padding-top:2.25rem}
+  .rec{grid-template-columns:1fr;gap:1rem;padding:1.1rem}
   .foot{margin-top:2.5rem}
   .foot-in{grid-template-columns:1fr 1fr}
   .foot-brand{grid-column:1/-1}
 }
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.card,.tools li,.ico,.cert img,.cert-go svg{transition:none}.tools li:hover,.tools li:hover .ico,.cert:hover img,.cert:hover .cert-go svg{transform:none}.trail{display:none}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.card,.tools li,.ico,.cert img,.cert-go svg,.rec-toggle svg{transition:none}.tools li:hover,.tools li:hover .ico,.cert:hover img,.cert:hover .cert-go svg{transform:none}.trail{display:none}}
 </style>
 </head>
 <body>
@@ -215,6 +238,7 @@ body.trail-on .trail{opacity:var(--o)}
       <a href="#stack">Tech stack</a>
       <a href="#projects">Projects</a>
       <a href="#certifications">Certifications</a>
+      <a href="#recommendations">Recommendations</a>
       <a class="nav-m" href="resume.pdf" download="felix-angelo-jr-resume.pdf">Resume (PDF)</a>
       <a class="nav-m" href="mailto:angelojr.felix@gmail.com">Email me</a>
     </nav>
@@ -239,11 +263,13 @@ body.trail-on .trail{opacity:var(--o)}
       <div>
         <h1>Felix Angelo Jr.</h1>
         <p class="role">Full Stack Web Developer</p>
+        <p class="loc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Las Pi&ntilde;as City, Philippines</p>
       </div>
     </div>
     <div class="lede">
-      <p>I've been building for the web since before AI became part of the workflow, and the fundamentals haven't changed: clean code, sound structure and work that holds up in production.</p>
-      <p>AI now helps me move faster, but shipping is still the job. I take projects from first idea to live release, work closely with the people who depend on them, and keep what I build reliable once real users arrive.</p>
+      <p>I've been practicing web development since 2014, with over 10 years of professional experience working with local and international teams across both on-site and remote environments. My work spans a wide range of projects, from simple static brochure websites and custom landing pages to complex, scalable web applications.</p>
+      <p>Throughout my career, I've focused on building functional, responsive, and maintainable web solutions tailored to real business needs. From writing custom code to developing complete websites, I bring hands-on experience across the development process, turning ideas and designs into reliable digital experiences.</p>
+      <p>Web development continues to evolve, and I've embraced AI as part of my modern development workflow to improve efficiency and accelerate delivery. However, the core philosophy remains unchanged: technology should solve real problems and address the everyday needs of businesses. Regardless of the tools or technologies involved, my focus remains on building practical, reliable solutions that create lasting value.</p>
     </div>
     <div class="hero-actions">
       <a class="btn primary" href="resume.pdf" download="felix-angelo-jr-resume.pdf">
@@ -294,13 +320,21 @@ body.trail-on .trail{opacity:var(--o)}
     <ul class="certs" id="certList"></ul>
   </section>
 
+  <section id="recommendations">
+    <div class="head">
+      <h2>Recommendations</h2>
+      <p>What people I&rsquo;ve worked with say, from LinkedIn.</p>
+    </div>
+    <div class="recs" id="recList"></div>
+  </section>
+
 </main>
 
 <footer class="foot">
   <div class="site foot-in">
     <div class="foot-brand">
       <strong>Felix Angelo Jr.</strong>
-      <p>Full Stack Web Developer in Las Pi&ntilde;as, Metro Manila. Open to new work.</p>
+      <p>Full Stack Web Developer in Las Pi&ntilde;as City, Philippines. Open to new work.</p>
     </div>
     <nav class="foot-col" aria-label="Page sections">
       <h3>On this page</h3>
@@ -309,6 +343,7 @@ body.trail-on .trail{opacity:var(--o)}
         <li><a href="#stack">Tech stack</a></li>
         <li><a href="#projects">Projects</a></li>
         <li><a href="#certifications">Certifications</a></li>
+        <li><a href="#recommendations">Recommendations</a></li>
         <li><a href="resume.pdf" download="felix-angelo-jr-resume.pdf">Resume (PDF)</a></li>
       </ul>
     </nav>
@@ -500,6 +535,42 @@ document.getElementById("certList").innerHTML = CERTS.map(function(c){
     '<p class="cert-d">' + c.d + '</p></div>' +
     '<span class="cert-go">View certificate' + ARROW + '</span></li>';
 }).join("");
+
+/* ---------- Recommendations ---------- */
+/* Add new recommendations to this list. Set img to a photo path such as "img/gijs-liekens.jpg" to replace the initials; leave it empty to show initials. quote is an array of paragraphs; the first `preview` are shown, the rest sit behind "Read full recommendation". */
+var RECS = [
+ {name:"Gijs Liekens",img:"img/gijs.jpg",role:"Managed Felix directly at VIP Response",date:"September 2, 2026",
+  u:"https://www.linkedin.com/in/felixangelo/",preview:2,
+  quote:[
+   "I had the pleasure of working with Felix for many years at VIP Response, and during that time we built countless websites, landing pages and projects together.",
+   "Felix was always one of those people you knew you could rely on. He worked hard, was always willing to help and brought a lot of creativity to everything we worked on. Many times, he would come up with his own ideas or improvements that made a project better than we originally had in mind.",
+   "But beyond being a very skilled frontend developer, I simply really enjoyed working with him. After so many years and so many projects together, you get to know what someone is like both professionally and personally and Felix has always been dependable, committed and great to have as part of the team.",
+   "I\u2019m grateful for everything we\u2019ve built together over the years and would recommend Felix without hesitation to anyone looking for a talented, creative and reliable frontend developer.",
+   "Thanks for all the years of hard work, Felix, and I wish you nothing but the best for whatever comes next!"
+  ]}
+];
+var QUOTE = '<svg class="rec-mark" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.2 5C5.8 6.6 3.5 9.7 3.5 13.7V19h6.3v-6.1H6.4c.1-2.2 1.3-3.9 3.6-5L9.2 5zm10.3 0c-3.4 1.6-5.7 4.7-5.7 8.7V19h6.3v-6.1h-3.4c.1-2.2 1.3-3.9 3.6-5L19.5 5z"/></svg>';
+var CHEV = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>';
+document.getElementById("recList").innerHTML = RECS.map(function(r, n){
+  var ini = r.name.split(" ").map(function(w){return w.charAt(0)}).join("").slice(0, 2).toUpperCase();
+  var p = function(a){return a.map(function(x){return "<p>" + x + "</p>"}).join("")};
+  var more = r.quote.length > r.preview;
+  var av = r.img ? '<img class="rec-avatar" src="' + r.img + '" alt="' + r.name + '">' : '<div class="rec-avatar" aria-hidden="true">' + ini + '</div>';
+  return '<figure class="rec"><figcaption>' + av +
+    '<div class="rec-name">' + r.name + '</div><div class="rec-role">' + r.role + '</div><div class="rec-date">' + r.date + '</div>' +
+    '<a class="rec-link" href="' + r.u + '" target="_blank" rel="noopener">See on LinkedIn' + ARROW + '</a></figcaption>' +
+    '<blockquote class="rec-text">' + QUOTE + p(r.quote.slice(0, r.preview)) +
+    (more ? '<div class="rec-more" id="recMore' + n + '" hidden>' + p(r.quote.slice(r.preview)) + '</div>' +
+      '<button type="button" class="rec-toggle" aria-expanded="false" aria-controls="recMore' + n + '"><span>Read full recommendation</span>' + CHEV + '</button>' : '') +
+    '</blockquote></figure>';
+}).join("");
+document.getElementById("recList").addEventListener("click", function(e){
+  var b = e.target.closest(".rec-toggle"); if (!b) return;
+  var open = b.getAttribute("aria-expanded") !== "true";
+  b.setAttribute("aria-expanded", open);
+  document.getElementById(b.getAttribute("aria-controls")).hidden = !open;
+  b.firstChild.textContent = open ? "Show less" : "Read full recommendation";
+});
 
 /* ---------- Mobile menu ---------- */
 (function(){
