@@ -373,6 +373,8 @@ var VIP = ["VIP Response.nl", "img/vipresponse-logo.png"];
 var P = [
  {t:"LPBEM School Website",c:"website",k:"Full stack",img:"lpbem-desktop.jpg",u:"https://lpbem.com/",by:["LPBEM","img/lpbem-logo.png"],y:2026,
   d:"The official website for Las Piñas Baptist Educational Ministry, owned end to end: backend, frontend and CMS. A production site for a real school community."},
+ {t:"Ragnarok Online Trivia",c:"website",k:"Full stack",img:"ragnatrivia.png",u:"https://ragnarok-online-trivia-game.vercel.app/",by:["Personal"],y:2026,
+  d:"A personal trivia game about the popular Korean MMORPG Ragnarok Online, built end to end as a full stack web app."},
  {t:"Rituals Landing Page",c:"landing_pages",k:"Landing page",img:"ritualslandingpage-desktop.jpg",s:"landing_pages/rituals-rip-2024/",y:2024,d:"A PSD/Figma campaign concept rebuilt as a responsive page, with a fast path from hero to offer."},
  {t:"Anti-Virus Landing Page",c:"landing_pages",k:"Landing page",img:"antiviruslandingpage-desktop.jpg",s:"landing_pages/checkantivirus.com-rip/",y:2024,d:"A security-software campaign page for a fast-turnaround paid-traffic launch."},
  {t:"Nike Air Landing Page",c:"landing_pages",k:"Landing page",img:"nikeairforcelandingpage-desktop.jpg",s:"landing_pages/nikeair-lp/",y:2024,d:"A product-drop page for a Nike Air Force campaign, built for speed on mobile ad traffic."},
@@ -407,7 +409,7 @@ P.forEach(function(p){
     '<div class="media"><img src="img/' + p.img + '" alt="" loading="lazy"></div>' +
     '<div class="body"><h3><a href="' + url + '" target="_blank" rel="noopener">' + esc(p.t) + '</a></h3>' +
     '<p>' + p.d + '</p>' +
-    '<div class="meta"><span class="by"><img' + (by === VIP ? ' class="vip"' : '') + ' src="' + by[1] + '" alt=""><span>' + by[0] + ", " + p.y + '</span></span><span class="kind">' + p.k + '</span></div></div>';
+    '<div class="meta"><span class="by">' + (by[1] ? '<img' + (by === VIP ? ' class="vip"' : '') + ' src="' + by[1] + '" alt="">' : '') + '<span>' + by[0] + ", " + p.y + '</span></span><span class="kind">' + p.k + '</span></div></div>';
   grid.appendChild(a);
 });
 
