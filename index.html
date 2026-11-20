@@ -106,8 +106,10 @@ section{padding-top:1.5rem}
 .job:last-child{padding-bottom:0}
 .job::before{content:"";position:absolute;left:0;top:0.5rem;width:0.5625rem;height:0.5625rem;border-radius:50%;background:var(--accent)}
 .job:not(:last-child)::after{content:"";position:absolute;left:0.25rem;top:1.0625rem;bottom:-0.5625rem;width:1px;background:var(--line)}
-.when{font-size:.9rem;color:var(--muted)}
+.when{display:flex;align-items:center;font-size:.9rem;line-height:1.5;color:var(--muted)}
 .job h3{font-size:1.25rem;font-weight:600;margin-top:0.125rem;letter-spacing:-.01em}
+.job.current::before{box-shadow:0 0 0 0.2rem color-mix(in srgb,var(--accent) 28%,transparent)}
+.now{margin-left:0.5rem;padding:0 0.5rem;border:1px solid var(--accent);border-radius:999px;color:var(--accent);font-size:.75rem;line-height:1.4}
 .job .org{color:var(--muted)}
 .cols{display:grid;grid-template-columns:1fr 1fr;gap:1.75rem;margin-top:0.875rem}
 .cols h4{font-size:.95rem;font-weight:600;margin-bottom:0.625rem}
@@ -280,7 +282,7 @@ img.rec-avatar{display:block;object-fit:cover;background:var(--surface)}
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 3v12M6 11l6 6 6-6M4 21h16"/></svg>
       </a>
       <a class="btn" href="mailto:angelojr.felix@gmail.com">Email me</a>
-      <p class="status"><i aria-hidden="true"></i>Open to work</p>
+      <p class="status"><i aria-hidden="true"></i>Employed at AnchorEd Global</p>
     </div>
   </div>
 
@@ -337,7 +339,7 @@ img.rec-avatar{display:block;object-fit:cover;background:var(--surface)}
   <div class="site foot-in">
     <div class="foot-brand">
       <strong>Felix Angelo Jr.</strong>
-      <p>Full Stack Web Developer in Las Pi&ntilde;as City, Philippines. Open to new work.</p>
+      <p>Full Stack Web Developer in Las Pi&ntilde;as City, Philippines. Currently at AnchorEd Global.</p>
     </div>
     <nav class="foot-col" aria-label="Page sections">
       <h3>On this page</h3>
@@ -457,6 +459,10 @@ document.getElementById("stackGrid").innerHTML = STACK.map(function(g){
 
 /* ---------- Experience ---------- */
 var JOBS = [
+ {when:"Nov 2026 to Present",cur:1,role:"Software Engineer and AI Developer",org:"AnchorEd Global",
+  did:["Design, build and ship software for AnchorEd Global and its whole educational ecosystem.",
+       "Develop AI-powered features and workflows as part of the engineering team."],
+  impact:["Bring full stack and AI-assisted development experience to products that support homeschooling families."]},
  {when:"2019 to Jul 2026",role:"Remote Frontend Web Developer",org:"VIP Response.nl",
   did:["Turned marketing campaign designs into responsive landing pages, surveys and email templates that work across devices.",
        "Worked directly with company stakeholders and the marketing team to support digital advertising initiatives.",
@@ -480,7 +486,7 @@ var JOBS = [
 ];
 document.getElementById("timeline").innerHTML = JOBS.map(function(j){
   var li = function(a){return a.map(function(x){return "<li>" + x + "</li>"}).join("")};
-  return '<li class="job"><p class="when">' + j.when + '</p><h3>' + j.role + ' <span class="org">at ' + j.org + '</span></h3>' +
+  return '<li class="job' + (j.cur ? ' current' : '') + '"><p class="when">' + j.when + (j.cur ? '<span class="now">Current</span>' : '') + '</p><h3>' + j.role + ' <span class="org">at ' + j.org + '</span></h3>' +
     '<div class="cols"><div><h4>Responsibilities</h4><ul>' + li(j.did) + '</ul></div><div><h4>Impact</h4><ul>' + li(j.impact) + '</ul></div></div></li>';
 }).join("");
 
